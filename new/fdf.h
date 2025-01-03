@@ -18,7 +18,11 @@ typedef struct s_coordinates
     int Y0;
     int X1;
     int Y1;
-    int color;
+    int **color;
+    int *c;
+    int **tab;
+    int lines;
+    int columns;
 }               t_vec;
 
 
@@ -27,5 +31,6 @@ typedef struct	s_vars {
 	void	*win;
 }				t_vars;
 
+int     ft_color(const char *s);
 
 #endif

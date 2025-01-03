@@ -2,8 +2,7 @@
 
 int	key_hook(int keycode, t_vars *vars)
 {
-	printf("the keyboard key { %d }!\n", keycode);
-    if (keycode == 99)
+    if (keycode == 65307)
     {
         mlx_destroy_window(vars->mlx, vars->win);
         exit(0);
@@ -53,13 +52,13 @@ void draw_line_segment(void *mlx, void *win, t_vec coord)
         t = (float)i / steps; // Vary t from 0 to 1
         x = coord.X0 + t * (coord.X1 - coord.X0);
         y = coord.Y0 + t * (coord.Y1 - coord.Y0);
-        mlx_pixel_put(mlx, win, (int)round(x), (int)round(y), 0xB7B7B7);
+        mlx_pixel_put(mlx, win, (int)round(x), (int)round(y), coord.color[0][0]);
         i++;
     }
 }
 
 
-void draw_line(int **tab, int lines, int columns)
+void draw_line(t_vec *var, int lines, int columns)
 {
     t_vec   coord;
     t_vars	vars;
@@ -79,12 +78,12 @@ void draw_line(int **tab, int lines, int columns)
         int i = 0;
         while (i < columns) {
             int X0 = x_offset + (i * scalex - j * scaley) * cos(M_PI / 4.5);
-            int Y0 = y_offset + (i * scalex + j * scaley) * sin(M_PI / 4.5) - (tab[j][i] * height_scale);
-
+            int Y0 = y_offset + (i * scalex + j * scaley) * sin(M_PI / 4.5) - (var->tab[j][i] * height_scale);
+            coord.color = var->color;
             if (i + 1 < columns)
             {
                 int X1 = x_offset + ((i + 1) * scalex - j * scaley) * cos(M_PI / 4.5);
-                int Y1 = y_offset + ((i + 1) * scalex + j * scaley) * sin(M_PI / 4.5) - (tab[j][i + 1] * height_scale);
+                int Y1 = y_offset + ((i + 1) * scalex + j * scaley) * sin(M_PI / 4.5) - (var->tab[j][i + 1] * height_scale);
                 coord.X0 = X0;
                 coord.Y0 = Y0;
                 coord.X1 = X1;
@@ -94,7 +93,7 @@ void draw_line(int **tab, int lines, int columns)
             if (j + 1 < lines)
             {
                 int X1 = x_offset + (i * scalex - (j + 1) * scaley) * cos(M_PI / 4.5);
-                int Y1 = y_offset + (i * scalex + (j + 1) * scaley) * sin(M_PI / 4.5) - (tab[j + 1][i] * height_scale);
+                int Y1 = y_offset + (i * scalex + (j + 1) * scaley) * sin(M_PI / 4.5) - (var->tab[j + 1][i] * height_scale);
                 coord.X0 = X0;
                 coord.Y0 = Y0;
                 coord.X1 = X1;
@@ -119,12 +118,14 @@ void free_file(char **file, int line_counter)
     free(file);
 }
 
-void    feed_tab(char **file, int lines, int **tab)
+void    feed_tab(char **file, int lines)
 {
     int i = 0;
-    tab = (int **)malloc(lines * sizeof(int *));
+    t_vec	vars;
+    vars.tab = (int **)malloc(lines * sizeof(int *));
+    vars.color = (int **)malloc(lines * sizeof(int *));
     char ***splited_file = (char ***)malloc((lines + 1) * sizeof(char **));
-    if(!tab)
+    if(!vars.tab || !vars.color)
         return (perror("Allocation failed"));
     while (file[i])
     {
@@ -139,25 +140,29 @@ void    feed_tab(char **file, int lines, int **tab)
         j = 0;
         while (splited_file[i][j])
             j++;
-        tab[i] = (int *)malloc(j * sizeof(int *));
-        if(!tab[i])
+        vars.tab[i] = (int *)malloc(j * sizeof(int *));
+        vars.color[i] = (int *)malloc(j * sizeof(int *));
+        if(!vars.tab[i] || !vars.color)
             return (perror("Allocation failed"));
         j = 0;
         while (splited_file[i][j])
         {
-            tab[i][j] = ft_atoi(splited_file[i][j]);
+            vars.tab[i][j] = ft_atoi(splited_file[i][j]);
+            // check_4_color(vars, splited_file[i][j]);
+            vars.color[i][j] = ft_color(splited_file[i][j]);
+            printf("in vars.color[%d][%d] %d\n",i,j, vars.color[i][j]);
             j++;
         }
         i++;
     }
-    draw_line(tab, i, j);
+    draw_line(&vars, i, j);
 }
 
 int main(int ac, char **av)
 {
     int fd = open(av[1], O_RDONLY);
     int i = 0;
-    int **tab;
+
     char    **file;
 
     if (fd == -1)
@@ -174,7 +179,7 @@ int main(int ac, char **av)
     }
     while (file[i])
         i++;
-    feed_tab(file, i, tab);
+    feed_tab(file, i);
     free_file(file, i);
     close(fd);
     return (0);
