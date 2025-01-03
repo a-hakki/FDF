@@ -19,7 +19,7 @@ typedef struct s_coordinates
     int X1;
     int Y1;
     int **color;
-    int *c;
+    int c;
     int **tab;
     int lines;
     int columns;

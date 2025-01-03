@@ -52,11 +52,10 @@ void draw_line_segment(void *mlx, void *win, t_vec coord)
         t = (float)i / steps; // Vary t from 0 to 1
         x = coord.X0 + t * (coord.X1 - coord.X0);
         y = coord.Y0 + t * (coord.Y1 - coord.Y0);
-        mlx_pixel_put(mlx, win, (int)round(x), (int)round(y), coord.color[0][0]);
+        mlx_pixel_put(mlx, win, (int)round(x), (int)round(y), coord.c);
         i++;
     }
 }
-
 
 void draw_line(t_vec *var, int lines, int columns)
 {
@@ -70,8 +69,8 @@ void draw_line(t_vec *var, int lines, int columns)
     int scalex = 30;
     int scaley = 35;
     int height_scale = 3;
-    float x_offset = 500 - (columns * scalex * cos(M_PI / 4.5)) / 2;
-    float y_offset = 500 - (lines * scaley * sin(M_PI / 4.5)) / 2;
+    float x_offset = 500;
+    float y_offset = 500;
 
     int j = 0;
     while (j < lines) {
@@ -79,7 +78,7 @@ void draw_line(t_vec *var, int lines, int columns)
         while (i < columns) {
             int X0 = x_offset + (i * scalex - j * scaley) * cos(M_PI / 4.5);
             int Y0 = y_offset + (i * scalex + j * scaley) * sin(M_PI / 4.5) - (var->tab[j][i] * height_scale);
-            coord.color = var->color;
+            coord.c = var->color[j][i];
             if (i + 1 < columns)
             {
                 int X1 = x_offset + ((i + 1) * scalex - j * scaley) * cos(M_PI / 4.5);
@@ -120,6 +119,7 @@ void free_file(char **file, int line_counter)
 
 void    feed_tab(char **file, int lines)
 {
+    int returned_val;
     int i = 0;
     t_vec	vars;
     vars.tab = (int **)malloc(lines * sizeof(int *));
@@ -148,9 +148,7 @@ void    feed_tab(char **file, int lines)
         while (splited_file[i][j])
         {
             vars.tab[i][j] = ft_atoi(splited_file[i][j]);
-            // check_4_color(vars, splited_file[i][j]);
             vars.color[i][j] = ft_color(splited_file[i][j]);
-            printf("in vars.color[%d][%d] %d\n",i,j, vars.color[i][j]);
             j++;
         }
         i++;

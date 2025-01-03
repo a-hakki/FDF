@@ -21,8 +21,10 @@ int ft_color(const char *s)
     d = 0;
     if (!s)
         return (0);
-    while (s[i] != ',')
+    while (s[i] != ',' && s[i])
         i++;
+    if (!s[i])
+        return (0xffffff);
     i++;
     if (s[i++] == '0')
     {
@@ -35,11 +37,5 @@ int ft_color(const char *s)
         }
     }
     else
-    return (0);
+        return (0xffffff);
 }
-// int main()
-// {
-//     int d = ft_color("rgrd,0xffffff\n");
-//     printf("%x\n", d);
-//     printf("%d\n", d);
-// }
