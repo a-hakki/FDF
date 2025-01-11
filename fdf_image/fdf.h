@@ -5,8 +5,6 @@
 #include <stdio.h>
 #include "../minilibx-linux/mlx.h"
 #include "../ft_libft/libft.h"
-#include "../ft_printf/ft_printf.h"
-#include "../Get_next_line/get_next_line.h"
 #include <math.h>
 #include <fcntl.h>
 #include <stdlib.h>
