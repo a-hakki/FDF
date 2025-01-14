@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_line.c                                        :+:      :+:    :+:   */
+/*   draw_shape.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/08 17:47:38 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/14 17:45:47 by aelsayed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fill_scale(t_scl *scale)
+void	fill_scale(t_scl *scale, float x)
 {
-	float	x;
-
-	x = 1.7;
 	scale->x = 10 * x;
 	scale->y = 12 * x;
 	scale->z = 1 * x;
@@ -78,16 +75,15 @@ void	get_crd_lines(t_all *strct, int i, int j)
 	draw_line_segment(&strct->win, strct->crd);
 }
 
-void	draw_line(t_all *var)
+void	draw_shape(t_all *var, int flag)
 {
 	int	i;
 	int	j;
 
 	j = 0;
-	initialisation(&var->win);
+	initialisation(&var->win, flag);
 	if (!var->win.mlx || !var->win.win)
 		return ;
-	fill_scale(&var->scale);
 	while (j < var->crd.lines)
 	{
 		i = 0;
@@ -102,5 +98,5 @@ void	draw_line(t_all *var)
 		}
 		j++;
 	}
-	hook_manipulation(&var->win);
+	hook_manipulation(var);
 }

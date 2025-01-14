@@ -6,16 +6,20 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 21:39:02 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/14 15:05:54 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+# include <unistd.h>
+# include <stdio.h>
 # include "../minilibx-linux/mlx.h"
 # include "../ft_libft/libft.h"
 # include <math.h>
+# include <fcntl.h>
+# include <stdlib.h>
 # define M_PI 3.14159265358979323846
 # define M_WIDTH 1920
 # define M_HEIGHT 1080
@@ -35,11 +39,11 @@ typedef struct s_coordinates
 
 typedef struct s_scales
 {
-	float	x;
-	float	y;
-	float	z;
-	int		x_offset;
-	int		y_offset;
+	int	x;
+	int	y;
+	int	z;
+	int	x_offset;
+	int	y_offset;
 }		t_scl;
 
 typedef struct s_vars
@@ -60,18 +64,15 @@ typedef struct s_all
 	t_window	win;
 }				t_all;
 
-t_all	*feed_tab(char **file, int lines, t_all	*vars);
-
 // line functions
 int		ft_color(const char *s);
-void	draw_shape(t_all *var, int flag);
-void	fill_scale(t_scl *scale, float x);
-void	fill_scale2(t_scl *scale, float x, char c);
+char	**ft_read(int fd, char *filename);
+void	draw_line(t_all *var);
 
 // hook functions
-int		keyhook(int keycode, t_all *var);
+int		key_hook(int keycode, t_window *window);
 int		ft_close(t_window *window);
-void	initialisation(t_window *window, int flag);
-void	hook_manipulation(t_all *var);
+void	initialisation(t_window *window);
+void	hook_manipulation(t_window *window);
 
 #endif

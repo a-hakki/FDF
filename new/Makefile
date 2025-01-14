@@ -1,46 +1,51 @@
 NAME = fdf
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
-SOURCES = \
+LIB_DIR = ../ft_libft
+MLX_DIR = ../minilibx-linux
+
+lib = $(LIB_DIR)/libft.a
+minilibx = $(MLX_DIR)/libmlx_Linux.a
+
+
+sources = \
 		fdf.c \
 		ft_color.c \
-		ft_read.c \
 		hooks.c \
-		draw_line.c
+		draw_shape.c \
+		feed_tab.c
 
-OBJECTS = $(SOURCES:.c=.o)
+object = $(sources:.c=.o)
 
-MINILIBX_PATH = ../minilibx-linux
-MINILIBX = $(MINILIBX_PATH)/libmlx_Linux.a
+# libft && minilibx rules
+$(lib):
+	make all -C $(LIB_DIR) && make -C $(MLX_DIR)
 
-LIBFT_PATH = ../ft_libft
-LIBFT = $(LIBFT_PATH)/libft.a
+all: $(NAME) 
 
-all: $(NAME)
-
-$(NAME): $(OBJECTS) $(LIBFT) $(MINILIBX)
-	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) -lXext -lX11 -lm -lz -o $(NAME)
-
-$(LIBFT):
-	make -C $(LIBFT_PATH)
-
-$(MINILIBX):
-	make -C $(MINILIBX_PATH)
-	cp $(MINILIBX) .
+$(NAME): $(object) $(lib)
+	$(CC) $(CFLAGS) $(object) ../minilibx-linux/libmlx_Linux.a ../ft_libft/libft.a -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
-	rm -f $(OBJECTS)
-	make -C $(LIBFT_PATH) clean || echo "No clean rule in $(LIBFT_PATH)"
-	make -C $(MINILIBX_PATH) clean || echo "No clean rule in $(MINILIBX_PATH)"
+	rm -rf $(object)
+	make clean -C $(LIB_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_PATH) fclean || echo "No fclean rule in $(LIBFT_PATH)"
-	make -C $(MINILIBX_PATH) clean || echo "No clean rule in $(MINILIBX_PATH)"
-	rm -f libmlx_Linux.a
+	rm -rf $(NAME)
+	make fclean -C $(LIB_DIR)
+	make clean -C $(MLX_DIR)
 
 re: fclean all
 
+flush: re clean
+	make clean -C $(LIB_DIR)
+	rm -rf $(object)
+f: $(object)
+	$(CC) $(CFLAGS) $(object) ../minilibx-linux/libmlx_Linux.a ../ft_libft/libft.a -lXext -lX11 -lm -lz -o $(NAME)
 
-.PHONY: clean
+c: $(object)
+	$(CC) $(CFLAGS) $(object) ../minilibx-linux/libmlx_Linux.a ../ft_libft/libft.a -lXext -lX11 -lm -lz -o $(NAME)
+
+.SECONDARY: $(object)
+.PHONY: clean fclean re all
