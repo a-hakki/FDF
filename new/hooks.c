@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 10:14:20 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:40:44 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	hook_manipulation(t_window *window)
 {
 	mlx_put_image_to_window(window->mlx, window->win, window->img, 0, 0);
 	mlx_key_hook(window->win, key_hook, window);
-	mlx_hook(window->win, 17, 1L << 5, ft_close, window);
+	mlx_hook(window->win, 17, 0, ft_close, window);
 	mlx_loop(window->mlx);
 }
