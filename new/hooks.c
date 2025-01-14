@@ -6,11 +6,39 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 21:50:01 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/14 22:49:27 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	ft_transition(int key, t_all *var)
+{
+	if (key == 65361)
+	{
+		fill_scale2(&var->scale, 0.5, '1');
+		mlx_clear_window(var->win.mlx, var->win.win);
+		draw_shape(var, 1);
+	}
+	if (key == 65363)
+	{
+		fill_scale2(&var->scale, 0.5, '3');
+		mlx_clear_window(var->win.mlx, var->win.win);
+		draw_shape(var, 1);
+	}
+	if (key == 65362)
+	{
+		fill_scale2(&var->scale, 0.5, '2');
+		mlx_clear_window(var->win.mlx, var->win.win);
+		draw_shape(var, 1);
+	}
+	if (key == 65364)
+	{
+		fill_scale2(&var->scale, 0.5, '4');
+		mlx_clear_window(var->win.mlx, var->win.win);
+		draw_shape(var, 1);
+	}
+}
 
 int	keyhook(int key, t_all *var)
 {
@@ -20,18 +48,20 @@ int	keyhook(int key, t_all *var)
 		mlx_clear_window(var->win.mlx, var->win.win);
 		exit(0);
 	}
-	else if (key == 'o')
+	if (key == 'o')
 	{
 		fill_scale2(&var->scale, 0.5, '*');
 		mlx_clear_window(var->win.mlx, var->win.win);
 		draw_shape(var, 1);
 	}
-	else if (key == 'i')
+	if (key == 'i')
 	{
 		fill_scale2(&var->scale, 0.5, '/');
 		mlx_clear_window(var->win.mlx, var->win.win);
 		draw_shape(var, 1);
 	}
+	if (key >= 65361 && key <= 65364)
+		ft_transition(key, var);
 	return (0);
 }
 

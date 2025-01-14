@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:43:44 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 21:38:42 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/14 22:47:16 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,22 @@ void	fill_scale2(t_scl *scale, float x, char c)
 {
 	if (c == '*')
 	{
-		scale->x += x;
-		scale->y += x;
-		scale->z += x / (scale->x + scale->y);
+		scale->x *= (1 + x);
+		scale->y *= (1 + x);
+		scale->z *= (1 + x);
 	}
-	else if (c == '/' && scale->x > 0 && scale->y > 0)
+	else if (c == '/' && scale->x > 1 && scale->y > 1)
 	{
-		scale->x -= x;
-		scale->y -= x;
-		scale->z -= x / (scale->x + scale->y);
+		scale->x *= (1 - x);
+		scale->y *= (1 - x);
+		scale->z *= (1 - x);
 	}
-	scale->x_offset = 350;
-	scale->y_offset = 250;
+	else if (c == '1')
+		scale->x_offset += 10;
+	else if (c == '3')
+		scale->x_offset -= 10;
+	else if (c == '2')
+		scale->y_offset += 10;
+	else if (c == '4')
+		scale->y_offset -= 10;
 }
