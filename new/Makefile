@@ -23,7 +23,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(object)
-	$(CC) $(CFLAGS)  $(object) libmlx_Linux.a libft.a -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(CFLAGS) $(object) libmlx_Linux.a libft.a -lXext -lX11 -lm -lz -g -o $(NAME)
 
 clean:
 	rm -f $(object)

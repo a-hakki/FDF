@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kali <kali@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/08 19:10:47 by kali             ###   ########.fr       */
+/*   Updated: 2025/01/13 20:35:27 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	draw_line(t_all *var);
 
 // hook functions
 int		key_hook(int keycode, t_window *window);
-int		ft_close(int keycode, t_window *window);
+int		ft_close(t_window *window);
 void	initialisation(t_window *window);
 void	hook_manipulation(t_window *window);
 
