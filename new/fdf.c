@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 10:07:04 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:03:08 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,20 @@ int	main(int ac, char **av)
 	int		i;
 	t_all	vars;
 
-	i = 0;
-	(void)ac;
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		return (perror("Failed to open file"), 1);
-	file = ft_read(fd, av[1]);
-	if (!file)
-		return (close(fd), perror("Failed to read file"), 1);
-	while (file[i])
-		i++;
-	draw_line(feed_tab(file, i, &vars));
-	return (free_file(file, i), close(fd), 0);
+	if (ac > 1 && ac <= 2)
+	{
+		i = 0;
+		if (ft_file_form(av[1], ".fdf") == 0)
+			return (perror("Bad form, expected form : <filename>.fdf"), 1);
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
+			return (perror("Failed to open file"), 1);
+		file = ft_read(fd, av[1]);
+		if (!file)
+			return (close(fd), perror("Failed to read file"), 1);
+		while (file[i])
+			i++;
+		draw_line(feed_tab(file, i, &vars));
+		return (free_file(file, i), close(fd), 0);
+	}
 }

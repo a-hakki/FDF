@@ -1,38 +1,46 @@
 NAME = fdf
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-sources = \
+CFLAGS = -Wall -Wextra -Werror -g
+
+SOURCES = \
 		fdf.c \
 		ft_color.c \
 		ft_read.c \
 		hooks.c \
 		draw_line.c
 
-object = $(sources:.c=.o)
+OBJECTS = $(SOURCES:.c=.o)
 
-minilibx = $(shell cd ../minilibx-linux/ && make && cp libmlx_Linux.a ../new)
-ifeq ($(minilibx),FreeBSD)
-	CC = clang
-endif
+MINILIBX_PATH = ../minilibx-linux
+MINILIBX = $(MINILIBX_PATH)/libmlx_Linux.a
 
-libft = $(shell cd ../ft_libft/ && make && cp libft.a ../new)
-ifeq ($(libft),FreeBSD)
-	CC = clang
-endif
+LIBFT_PATH = ../ft_libft
+LIBFT = $(LIBFT_PATH)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(object)
-	$(CC) $(CFLAGS) $(object) libmlx_Linux.a libft.a -lXext -lX11 -lm -lz -g -o $(NAME)
+$(NAME): $(OBJECTS) $(LIBFT) $(MINILIBX)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) -lXext -lX11 -lm -lz -o $(NAME)
+
+$(LIBFT):
+	make -C $(LIBFT_PATH)
+
+$(MINILIBX):
+	make -C $(MINILIBX_PATH)
+	cp $(MINILIBX) .
 
 clean:
-	rm -f $(object)
+	rm -f $(OBJECTS)
+	make -C $(LIBFT_PATH) clean || echo "No clean rule in $(LIBFT_PATH)"
+	make -C $(MINILIBX_PATH) clean || echo "No clean rule in $(MINILIBX_PATH)"
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(LIBFT_PATH) fclean || echo "No fclean rule in $(LIBFT_PATH)"
+	make -C $(MINILIBX_PATH) clean || echo "No clean rule in $(MINILIBX_PATH)"
+	rm -f libmlx_Linux.a
 
 re: fclean all
 
-.SECONDARY: $(object)
 
 .PHONY: clean
