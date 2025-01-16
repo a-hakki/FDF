@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_shape.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 17:45:47 by aelsayed         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:14:31 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	fill_scale(t_scl *scale, float x)
 	scale->x = 10 * x;
 	scale->y = 12 * x;
 	scale->z = 1 * x;
-	scale->x_offset = 350;
-	scale->y_offset = 250;
+	scale->x_offset = M_W * 450 / 1000;
+	scale->y_offset = M_H * 250 / 1000;
 }
 
 void	draw_line_segment(t_window *window, t_vec crd)
@@ -35,7 +35,7 @@ void	draw_line_segment(t_window *window, t_vec crd)
 	{
 		x = crd.x0 + (float)i / steps * (crd.x1 - crd.x0);
 		y = crd.y0 + (float)i / steps * (crd.y1 - crd.y0);
-		if (x >= 0 && x < window->line_length / 4 && y >= 0 && y < 1000)
+		if (x >= 0 && x < window->line_length / 4 && y >= 0 && y < M_H)
 		{
 			dst = window->addr + ((int)y * window->line_length + \
 				(int)x * (window->bits_per_pixel / 8));

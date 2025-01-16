@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 21:39:02 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/16 10:14:10 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "../ft_libft/libft.h"
 # include <math.h>
 # define M_PI 3.14159265358979323846
-# define M_WIDTH 1920
-# define M_HEIGHT 1080
+# define M_W 1920
+# define M_H 1080
 
 typedef struct s_coordinates
 {
