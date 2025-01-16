@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/16 20:22:41 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/16 21:44:06 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	keyhook(int key, t_all *var)
 			fill_scale2(&var->scale, 0.5, '*');
 		if (key == 'i')
 			fill_scale2(&var->scale, 0.5, '/');
-		if (key == 'c')
+		if (key == 'b')
 			fill_scale(&var->scale, 1.7);
 		if (key == 'z')
 			var->scale.z += 0.5;
@@ -87,11 +87,26 @@ void	initialisation(t_window *window, int flag)
 			&window->line_length, &window->endian);
 	}
 }
+void set_background_color(t_all *var, int color)
+{
+    int y;
+
+    y = 0;
+    while (y < M_H)
+	{
+		mlx_pixel_put(var->win.mlx, var->win.win, (M_W * 10 / 100) -1 , y, color);
+		y++;
+	}
+}
 
 void	hook_manipulation(t_all *var)
 {
 	mlx_clear_window(var->win.mlx, var->win.win);
-	mlx_put_image_to_window(var->win.mlx, var->win.win, var->win.img, 0, 0);
+	set_background_color(var, 0xffffff);
+	mlx_put_image_to_window(var->win.mlx, var->win.win, var->win.img, M_W * 10 / 100, 0);
+	mlx_string_put(var->win.mlx, var->win.win, M_W * 2 / 100, M_H * 10 / 100, 0xffffff, ft_strjoin("X offset : ", ft_itoa(var->scale.x_offset)));
+	mlx_string_put(var->win.mlx, var->win.win, M_W * 2 / 100, M_H * 15 / 100, 0xffffff, ft_strjoin("Y offset : ", ft_itoa(var->scale.y_offset)));
+	mlx_string_put(var->win.mlx, var->win.win, M_W * 2 / 100, M_H * 20 / 100, 0xffffff, ft_strjoin("Z value  : ", ft_itoa(var->scale.z)));
 	mlx_key_hook(var->win.win, keyhook, var);
 	mlx_hook(var->win.win, 17, 1L << 0, ft_close, &var->win);
 	mlx_loop(var->win.mlx);

@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/16 13:46:28 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/16 21:42:38 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_line_segment(t_window *window, t_vec crd)
 	char	*dst;
 
 	i = 0;
-	steps = 2000;
+	steps = 600;
 	while (i <= steps)
 	{
 		x = crd.x0 + (float)i / steps * (crd.x1 - crd.x0);

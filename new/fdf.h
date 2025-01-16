@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/16 10:14:10 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/16 21:18:25 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		ft_color(const char *s);
 void	draw_shape(t_all *var, int flag);
 void	fill_scale(t_scl *scale, float x);
 void	fill_scale2(t_scl *scale, float x, char c);
+void	draw_line_segment(t_window *window, t_vec crd);
 
 // hook functions
 int		keyhook(int keycode, t_all *var);
