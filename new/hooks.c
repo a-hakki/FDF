@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/16 13:32:23 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/16 20:22:41 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	keyhook(int key, t_all *var)
 		mlx_destroy_image(var->win.mlx, var->win.img);
 		exit(0);
 	}
-	if (key == 'o' || key == 'i' || key == 'c')
+	if (key >= 'a' && key <= 'z')
 	{
 		if (key == 'o')
 			fill_scale2(&var->scale, 0.5, '*');
@@ -51,6 +51,10 @@ int	keyhook(int key, t_all *var)
 			fill_scale2(&var->scale, 0.5, '/');
 		if (key == 'c')
 			fill_scale(&var->scale, 1.7);
+		if (key == 'z')
+			var->scale.z += 0.5;
+		if (key == 'x')
+			var->scale.z -= 0.5;
 		draw_shape(var, 1);
 	}
 	if (key >= 65361 && key <= 65364)

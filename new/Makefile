@@ -18,11 +18,11 @@ sources = \
 
 object = $(sources:.c=.o)
 
+all: $(NAME) 
+
 # libft && minilibx rules
 $(lib):
 	make all -C $(LIB_DIR) && make -C $(MLX_DIR)
-
-all: $(NAME) 
 
 $(NAME): $(object) $(lib)
 	$(CC) $(CFLAGS) $(object) ../minilibx-linux/libmlx_Linux.a ../ft_libft/libft.a -lXext -lX11 -lm -lz -o $(NAME)
