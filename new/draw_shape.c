@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/16 21:42:38 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/18 13:36:07 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	draw_shape(t_all *var, int flag)
 	int	j;
 
 	j = 0;
-	initialisation(&var->win, flag);
+	initialisation(var, flag);
 	if (!var->win.mlx || !var->win.win)
 		return ;
 	while (j < var->crd.lines)

@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/16 21:18:25 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/18 13:34:39 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_scales
 	float	z;
 	int		x_offset;
 	int		y_offset;
+	int		x_ms;
+	int		y_ms;
+	int		mouse_pressed;
 }		t_scl;
 
 typedef struct s_vars
@@ -72,7 +75,7 @@ void	draw_line_segment(t_window *window, t_vec crd);
 // hook functions
 int		keyhook(int keycode, t_all *var);
 int		ft_close(t_window *window);
-void	initialisation(t_window *window, int flag);
+void	initialisation(t_all *var, int flag);
 void	hook_manipulation(t_all *var);
 
 #endif
