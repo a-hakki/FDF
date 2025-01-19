@@ -6,13 +6,13 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 17:14:25 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:23:03 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    get_crd_colomns_p(t_all *strct, int i, int j)
+void	get_crd_colomns_p(t_all *strct, int i, int j)
 {
 	strct->crd.x0 = strct->scale.x_offset + (i * strct->scale.x);
 	strct->crd.y0 = strct->scale.y_offset + (j * strct->scale.y);
@@ -21,7 +21,7 @@ void    get_crd_colomns_p(t_all *strct, int i, int j)
 	draw_line_segment(&strct->win, strct->crd);
 }
 
-void    get_crd_lines_p(t_all *strct, int i, int j)
+void	get_crd_lines_p(t_all *strct, int i, int j)
 {
 	strct->crd.x0 = strct->scale.x_offset + (i * strct->scale.x);
 	strct->crd.y0 = strct->scale.y_offset + (j * strct->scale.y);
@@ -57,7 +57,7 @@ void	draw_p(t_all *var, int flag)
 	hook_manipulation(var);
 }
 
-void    draw(t_all *var)
+void	draw(t_all *var)
 {
 	if (var->scale.projection == 'p')
 		draw_p(var, 1);
