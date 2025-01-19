@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 14:25:27 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 14:51:25 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	draw_line_segment(t_window *window, t_vec crd)
 		if (x >= 0 && x < window->line_length / 4 && y >= 0 && y < M_H)
 		{
 			dst = window->addr + ((int)y * window->line_length + \
-				(int)x * (window->bits_per_pixel / 8));
+				(int)x * (window->bpp / 8));
 			*(unsigned int *)dst = crd.c;
 		}
 		i++;

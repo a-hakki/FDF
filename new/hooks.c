@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 14:38:39 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 15:06:24 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,30 @@ void	initialisation(t_all *var, int flag)
 	}
 }
 
-void	set_background_color(t_all *var, int color)
+void	set_separite_line(t_all *var, int color)
 {
-	int	y;
+	int	x;
 
-	y = 0;
-	while (y < M_H)
+	x = 0;
+	while (x < M_W)
 	{
 		mlx_pixel_put(var->win.mlx, var->win.win, \
-			(M_W * 10 / 100) - 1, y, color);
-		y++;
+			x, (M_H * 10 / 100) - 1, color);
+		x++;
 	}
 }
 
 void	hook_manipulation(t_all *var)
 {
 	mlx_clear_window(var->win.mlx, var->win.win);
-	set_background_color(var, 0xffffff);
+	set_separite_line(var, 0xffffff);
 	mlx_put_image_to_window(var->win.mlx, var->win.win, var->win.img, \
-		M_W * 10 / 100, 0);
-	mlx_string_put(var->win.mlx, var->win.win, M_W * 2 / 100, M_H * 10 / 100, \
+		0, (M_H * 10 / 100));
+	mlx_string_put(var->win.mlx, var->win.win, M_W * 15 / 100, M_H * 6 / 100, \
 		0xffffff, ft_strjoin("X offset : ", ft_itoa(var->scale.x_offset)));
-	mlx_string_put(var->win.mlx, var->win.win, M_W * 2 / 100, M_H * 15 / 100, \
+	mlx_string_put(var->win.mlx, var->win.win, M_W * 45 / 100, M_H * 6 / 100, \
 		0xffffff, ft_strjoin("Y offset : ", ft_itoa(var->scale.y_offset)));
-	mlx_string_put(var->win.mlx, var->win.win, M_W * 2 / 100, M_H * 20 / 100, \
+	mlx_string_put(var->win.mlx, var->win.win, M_W * 75 / 100, M_H * 6 / 100, \
 		0xffffff, ft_strjoin("Z value  : ", ft_itoa(var->scale.z)));
 	mlx_hook(var->win.win, 4, 1L << 2, mouse_press, var);
 	mlx_hook(var->win.win, 5, 1L << 3, mouse_release, var);
