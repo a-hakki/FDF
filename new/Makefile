@@ -14,7 +14,8 @@ sources = \
 		ft_color.c \
 		hooks.c \
 		draw_shape.c \
-		feed_tab.c
+		feed_tab.c \
+		mouse.c
 
 object = $(sources:.c=.o)
 

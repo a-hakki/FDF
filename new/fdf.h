@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/18 13:34:39 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 14:33:02 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_vars
 	void	*win;
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
+	int		bpp;
 	int		line_length;
 	int		endian;
 }			t_window;
@@ -77,5 +77,8 @@ int		keyhook(int keycode, t_all *var);
 int		ft_close(t_window *window);
 void	initialisation(t_all *var, int flag);
 void	hook_manipulation(t_all *var);
+int		mouse_press(int button, int x, int y, t_all *var);
+int		mouse_release(int button, int x, int y, t_all *var);
+int		mouse_move(int x, int y, t_all *var);
 
 #endif
