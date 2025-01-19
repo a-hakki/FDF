@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 14:51:25 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:08:14 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	draw_shape(t_all *var, int flag)
 	int	j;
 
 	j = 0;
+	var->scale.projection = 'i';
 	initialisation(var, flag);
 	if (!var->win.mlx || !var->win.win)
 		return ;

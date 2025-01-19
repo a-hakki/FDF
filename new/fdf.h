@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 14:33:02 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:14:47 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_scales
 	int		x_ms;
 	int		y_ms;
 	int		mouse_pressed;
+	int		projection;
 }		t_scl;
 
 typedef struct s_vars
@@ -67,7 +68,9 @@ t_all	*feed_tab(char **file, int lines, t_all	*vars);
 
 // line functions
 int		ft_color(const char *s);
+void	draw_p(t_all *var, int flag);
 void	draw_shape(t_all *var, int flag);
+void    draw(t_all *var);
 void	fill_scale(t_scl *scale, float x);
 void	fill_scale2(t_scl *scale, float x, char c);
 void	draw_line_segment(t_window *window, t_vec crd);

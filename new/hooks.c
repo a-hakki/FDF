@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 15:06:24 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:16:39 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	keyhook(int k, t_all *var)
 		mlx_destroy_image(var->win.mlx, var->win.img);
 		exit(0);
 	}
-	if (k == 'o' || k == 'i' || k == 'b' || k == 'z' || k == 'x')
+	if (ft_strrchr("tnbzxpi", k))
 	{
-		if (k == 'o')
+		if (k == 't')
 			fill_scale2(&var->scale, 0.5, '*');
-		if (k == 'i')
+		if (k == 'n')
 			fill_scale2(&var->scale, 0.5, '/');
 		if (k == 'b')
 			fill_scale(&var->scale, 1.7);
@@ -31,7 +31,11 @@ int	keyhook(int k, t_all *var)
 			var->scale.z += 0.5;
 		if (k == 'x')
 			var->scale.z -= 0.5;
-		draw_shape(var, 1);
+		if (k == 'p')
+			var->scale.projection = 'p';
+		if (k == 'i')
+			var->scale.projection = 'i';
+		draw(var);
 	}
 	return (0);
 }

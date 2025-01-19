@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 14:48:14 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 17:17:06 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	mouse_move(int x, int y, t_all *var)
 		var->scale.y_offset += delta_y;
 		var->scale.x_ms = x;
 		var->scale.y_ms = y;
-		draw_shape(var, 1);
+		draw(var);
 	}
 	return (0);
 }

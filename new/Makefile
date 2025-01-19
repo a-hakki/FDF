@@ -15,7 +15,8 @@ sources = \
 		hooks.c \
 		draw_shape.c \
 		feed_tab.c \
-		mouse.c
+		mouse.c \
+		draw.c
 
 object = $(sources:.c=.o)
 
