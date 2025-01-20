@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 17:16:39 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/20 19:01:17 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	keyhook(int k, t_all *var)
 	if (k == 65307)
 	{
 		mlx_destroy_image(var->win.mlx, var->win.img);
-		exit(0);
+		mlx_destroy_window(var->win.mlx, var->win.win);
+		mlx_destroy_display(var->win.mlx);
+		free(var->win.mlx);
+		return (fr(var->crd.tab, var->crd.color, NULL), exit(1), 0);
 	}
 	if (ft_strrchr("tnbzxpi", k))
 	{
@@ -35,17 +38,19 @@ int	keyhook(int k, t_all *var)
 			var->scale.projection = 'p';
 		if (k == 'i')
 			var->scale.projection = 'i';
+		mlx_destroy_image(var->win.mlx, var->win.img);
 		draw(var);
 	}
 	return (0);
 }
 
-int	ft_close(t_window *window)
+int	ft_close(t_all *var)
 {
-	mlx_destroy_image(window->mlx, window->img);
-	mlx_destroy_window(window->mlx, window->win);
-	exit(0);
-	return (0);
+	mlx_destroy_image(var->win.mlx, var->win.img);
+	mlx_destroy_window(var->win.mlx, var->win.win);
+	mlx_destroy_display(var->win.mlx);
+	free(var->win.mlx);
+	return (fr(var->crd.tab, var->crd.color, NULL), exit(1), 0);
 }
 
 void	initialisation(t_all *var, int flag)
@@ -84,20 +89,27 @@ void	set_separite_line(t_all *var, int color)
 
 void	hook_manipulation(t_all *var)
 {
+	char *s;
 	mlx_clear_window(var->win.mlx, var->win.win);
 	set_separite_line(var, 0xffffff);
 	mlx_put_image_to_window(var->win.mlx, var->win.win, var->win.img, \
 		0, (M_H * 10 / 100));
+	s = ft_strjoin("X offset : ", ft_itoa(var->scale.x_offset));
 	mlx_string_put(var->win.mlx, var->win.win, M_W * 15 / 100, M_H * 6 / 100, \
-		0xffffff, ft_strjoin("X offset : ", ft_itoa(var->scale.x_offset)));
+		0xffffff, s);
+	free(s);
+	s = ft_strjoin("Y offset : ", ft_itoa(var->scale.y_offset));
 	mlx_string_put(var->win.mlx, var->win.win, M_W * 45 / 100, M_H * 6 / 100, \
-		0xffffff, ft_strjoin("Y offset : ", ft_itoa(var->scale.y_offset)));
+		0xffffff, s);
+	free(s);
+	s = ft_strjoin("Z value  : ", ft_itoa(var->scale.z));
 	mlx_string_put(var->win.mlx, var->win.win, M_W * 75 / 100, M_H * 6 / 100, \
-		0xffffff, ft_strjoin("Z value  : ", ft_itoa(var->scale.z)));
+		0xffffff, s);
+	free(s);
 	mlx_hook(var->win.win, 4, 1L << 2, mouse_press, var);
 	mlx_hook(var->win.win, 5, 1L << 3, mouse_release, var);
 	mlx_hook(var->win.win, 6, 1L << 6, mouse_move, var);
 	mlx_key_hook(var->win.win, keyhook, var);
-	mlx_hook(var->win.win, 17, 1L << 0, ft_close, &var->win);
+	mlx_hook(var->win.win, 17, 1L << 0, ft_close, var);
 	mlx_loop(var->win.mlx);
 }

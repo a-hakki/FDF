@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/01/16 20:18:06 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/20 18:50:34 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ int	mycmp(char *s)
 	}
 	return (0);
 }
+void	free_tab(t_all *var)
+{
+	int	i;
+
+	i = 0;
+	while(var->crd.color[i])
+	{
+		free(var->crd.color[i]);
+		free(var->crd.tab[i]);
+		i++;
+	}
+	free(var->crd.color[i]);
+	free(var->crd.tab[i]);
+	free(var->crd.color);
+	free(var->crd.tab);
+}
 
 int	main(int ac, char **av)
 {
@@ -47,12 +63,13 @@ int	main(int ac, char **av)
 			return (perror("Failed to open file"), 1);
 		file = ft_read(fd, av[1]);
 		if (!file)
-			return (close(fd), perror("Failed to read file"), 1);
+			return (close(fd), ft_free("2", file), perror("Failed to read file"), 1);
 		while (file[i])
 			i++;
 		a = feed_tab(file, i, &vars);
 		fill_scale(&vars.scale, 1.7);
 		draw_shape(a, 0);
+		free_tab(a);
 		return (ft_free("2", file), close(fd), 0);
 	}
 	printfd(2, "Invalid Argument\n");

@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 17:23:15 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/19 19:56:53 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,11 @@ void	draw(t_all *var);
 void	fill_scale(t_scl *scale, float x);
 void	fill_scale2(t_scl *scale, float x, char c);
 void	draw_line_segment(t_window *window, t_vec crd);
+void	fr(int **tab, int **col, char ***split);
 
 // hook functions
 int		keyhook(int keycode, t_all *var);
-int		ft_close(t_window *window);
+int		ft_close(t_all *var);
 void	initialisation(t_all *var, int flag);
 void	hook_manipulation(t_all *var);
 int		mouse_press(int button, int x, int y, t_all *var);
