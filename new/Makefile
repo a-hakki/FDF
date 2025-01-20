@@ -16,7 +16,8 @@ sources = \
 		draw_shape.c \
 		feed_tab.c \
 		mouse.c \
-		draw.c
+		draw.c \
+		key.c
 
 object = $(sources:.c=.o)
 

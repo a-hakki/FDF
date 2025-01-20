@@ -6,43 +6,11 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 19:01:17 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/20 19:55:30 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int	keyhook(int k, t_all *var)
-{
-	if (k == 65307)
-	{
-		mlx_destroy_image(var->win.mlx, var->win.img);
-		mlx_destroy_window(var->win.mlx, var->win.win);
-		mlx_destroy_display(var->win.mlx);
-		free(var->win.mlx);
-		return (fr(var->crd.tab, var->crd.color, NULL), exit(1), 0);
-	}
-	if (ft_strrchr("tnbzxpi", k))
-	{
-		if (k == 't')
-			fill_scale2(&var->scale, 0.5, '*');
-		if (k == 'n')
-			fill_scale2(&var->scale, 0.5, '/');
-		if (k == 'b')
-			fill_scale(&var->scale, 1.7);
-		if (k == 'z')
-			var->scale.z += 0.5;
-		if (k == 'x')
-			var->scale.z -= 0.5;
-		if (k == 'p')
-			var->scale.projection = 'p';
-		if (k == 'i')
-			var->scale.projection = 'i';
-		mlx_destroy_image(var->win.mlx, var->win.img);
-		draw(var);
-	}
-	return (0);
-}
 
 int	ft_close(t_all *var)
 {
@@ -89,7 +57,8 @@ void	set_separite_line(t_all *var, int color)
 
 void	hook_manipulation(t_all *var)
 {
-	char *s;
+	char	*s;
+
 	mlx_clear_window(var->win.mlx, var->win.win);
 	set_separite_line(var, 0xffffff);
 	mlx_put_image_to_window(var->win.mlx, var->win.win, var->win.img, \
