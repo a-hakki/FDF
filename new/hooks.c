@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 19:55:30 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:15:53 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	initialisation(t_all *var, int flag)
 	}
 	if (flag)
 	{
+		mlx_destroy_image(var->win.mlx, var->win.img);
 		var->win.img = mlx_new_image(var->win.mlx, M_W, M_H);
 		var->win.addr = mlx_get_data_addr(var->win.img, &var->win.bpp, \
 			&var->win.line_length, &var->win.endian);

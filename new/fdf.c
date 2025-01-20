@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 19:59:39 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:05:57 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	main(int ac, char **av)
 	int		fd;
 	int		i;
 	t_all	vars;
-	t_all	*a;
 
 	i = 0;
 	if (ac == 2 && mycmp(av[1]))
@@ -68,10 +67,10 @@ int	main(int ac, char **av)
 			perror("Failed to read file"), 1);
 		while (file[i])
 			i++;
-		a = feed_tab(file, i, &vars);
+		feed_tab(file, i, &vars);
 		fill_scale(&vars.scale, 1.7);
-		draw_shape(a, 0);
-		return (ft_free("2", file), free_tab(a), close(fd), 0);
+		draw_shape(&vars, 0);
+		return (ft_free("2", file), free_tab(&vars), close(fd), 0);
 	}
 	printfd(2, "Invalid Argument\n");
 	printfd(2, "\tExpected Format: ./fdf <filename.fdf>\n");

@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:34:33 by aelsayed          #+#    #+#             */
-/*   Updated: 2025/01/19 19:50:29 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:11:14 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	fr(int **tab, int **col, char ***split)
 		int_free("2", col);
 	if (split)
 		ft_free("3", split);
+	exit(1);
 }
 
 char	***ft_alloc_all(t_all *vars, int lines, char **file)
@@ -47,7 +48,7 @@ char	***ft_alloc_all(t_all *vars, int lines, char **file)
 	return (sp_fl);
 }
 
-t_all	*feed_tab(char **file, int lines, t_all *vars)
+void	feed_tab(char **file, int lines, t_all *vars)
 {
 	char	***sp_fl;
 	int		i;
@@ -60,7 +61,7 @@ t_all	*feed_tab(char **file, int lines, t_all *vars)
 		vars->crd.tab[i] = (int *)malloc(ft_arrlen(sp_fl[i]) * sizeof(int *));
 		vars->crd.color[i] = (int *)malloc(ft_arrlen(sp_fl[i]) * sizeof(int *));
 		if (!vars->crd.tab[i] || !vars->crd.color[i])
-			return (fr(vars->crd.tab, vars->crd.color, NULL), exit(1), NULL);
+			return (fr(vars->crd.tab, vars->crd.color, NULL));
 		j = 0;
 		while (sp_fl[i][j])
 		{
@@ -73,5 +74,4 @@ t_all	*feed_tab(char **file, int lines, t_all *vars)
 	vars->crd.lines = i;
 	vars->crd.columns = j;
 	ft_free("3", sp_fl);
-	return (vars);
 }

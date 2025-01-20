@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 20:00:24 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:18:22 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	keys(int k, t_all *var)
 		var->scale.projection = 'p';
 	if (k == 'i')
 		var->scale.projection = 'i';
-	mlx_destroy_image(var->win.mlx, var->win.img);
 	draw(var);
 }
 

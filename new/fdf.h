@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 19:48:02 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:07:45 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_all
 	t_window	win;
 }				t_all;
 
-t_all	*feed_tab(char **file, int lines, t_all	*vars);
+void	feed_tab(char **file, int lines, t_all	*vars);
 
 // line functions
 int		ft_color(const char *s);
