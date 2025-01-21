@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 20:05:57 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:05:29 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	free_tab(t_all *var)
 	int	i;
 
 	i = 0;
-	while (var->crd.color[i])
+	while (i < var->crd.lines)
 	{
 		free(var->crd.color[i]);
 		free(var->crd.tab[i]);

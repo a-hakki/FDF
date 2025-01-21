@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 16:34:33 by aelsayed          #+#    #+#             */
-/*   Updated: 2025/01/20 20:11:14 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:32:34 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	***ft_alloc_all(t_all *vars, int lines, char **file)
 {
 	int		i;
 	char	***sp_fl;
+	char	*temp;
 
 	i = 0;
 	vars->crd.tab = (int **)malloc((lines + 1) * sizeof(int *));
@@ -41,11 +42,14 @@ char	***ft_alloc_all(t_all *vars, int lines, char **file)
 	vars->crd.color[lines] = NULL;
 	while (file[i])
 	{
-		sp_fl[i] = ft_split(ft_strtrim(file[i], "\n "), ' ');
+		temp = ft_strtrim(file[i], "\n ");
+		sp_fl[i] = ft_split(temp, ' ');
+		free(file[i]);
+		free(temp);
 		i++;
 	}
 	sp_fl[lines] = NULL;
-	return (sp_fl);
+	return (free(file), sp_fl);
 }
 
 void	feed_tab(char **file, int lines, t_all *vars)

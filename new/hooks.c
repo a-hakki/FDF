@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 20:15:53 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:34:45 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	ft_close(t_all *var)
 	mlx_destroy_image(var->win.mlx, var->win.img);
 	mlx_destroy_window(var->win.mlx, var->win.win);
 	mlx_destroy_display(var->win.mlx);
-	free(var->win.mlx);
+	if (var->win.mlx)
+		free(var->win.mlx);
+	// if (var->win.addr)
+	// 	free(var->win.addr);
 	return (fr(var->crd.tab, var->crd.color, NULL), exit(1), 0);
 }
 
@@ -64,15 +67,15 @@ void	hook_manipulation(t_all *var)
 	set_separite_line(var, 0xffffff);
 	mlx_put_image_to_window(var->win.mlx, var->win.win, var->win.img, \
 		0, (M_H * 10 / 100));
-	s = ft_strjoin("X offset : ", ft_itoa(var->scale.x_offset));
+	s = ft_strjoin(ft_strdup("X offset : "), ft_itoa(var->scale.x_offset));
 	mlx_string_put(var->win.mlx, var->win.win, M_W * 15 / 100, M_H * 6 / 100, \
 		0xffffff, s);
 	free(s);
-	s = ft_strjoin("Y offset : ", ft_itoa(var->scale.y_offset));
+	s = ft_strjoin(ft_strdup("Y offset : "), ft_itoa(var->scale.y_offset));
 	mlx_string_put(var->win.mlx, var->win.win, M_W * 45 / 100, M_H * 6 / 100, \
 		0xffffff, s);
 	free(s);
-	s = ft_strjoin("Z value  : ", ft_itoa(var->scale.z));
+	s = ft_strjoin(ft_strdup("Z value  : "), ft_itoa(var->scale.z));
 	mlx_string_put(var->win.mlx, var->win.win, M_W * 75 / 100, M_H * 6 / 100, \
 		0xffffff, s);
 	free(s);
