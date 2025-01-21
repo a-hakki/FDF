@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/01/21 13:10:06 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:48:39 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	keyhook(int k, t_all *var)
 		mlx_destroy_display(var->win.mlx);
 		if (var->win.mlx)
 			free(var->win.mlx);
-		free(var->win.addr);
 		return (fr(var->crd.tab, var->crd.color, NULL), exit(1), 0);
 	}
 	if (ft_strrchr("tnbzxpi", k))

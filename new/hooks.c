@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/21 13:34:45 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:48:30 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	ft_close(t_all *var)
 	mlx_destroy_display(var->win.mlx);
 	if (var->win.mlx)
 		free(var->win.mlx);
-	// if (var->win.addr)
-	// 	free(var->win.addr);
 	return (fr(var->crd.tab, var->crd.color, NULL), exit(1), 0);
 }
 
