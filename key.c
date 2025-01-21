@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/01/21 14:48:39 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 22:00:48 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	keys(int k, t_all *var)
 		var->scale.projection = 'p';
 	if (k == 'i')
 		var->scale.projection = 'i';
+	if (k == 65361)
+		var->scale.rot_direction += 1;
+	if (k == 65363)
+		var->scale.rot_direction -= 1;
 	draw(var);
 }
 
@@ -42,7 +46,7 @@ int	keyhook(int k, t_all *var)
 			free(var->win.mlx);
 		return (fr(var->crd.tab, var->crd.color, NULL), exit(1), 0);
 	}
-	if (ft_strrchr("tnbzxpi", k))
+	if (ft_strrchr("tnbzxpi", k) || k == 65361 || k == 65363)
 		keys(k, var);
 	return (0);
 }

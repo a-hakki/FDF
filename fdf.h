@@ -6,15 +6,17 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 20:07:45 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 22:02:14 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../minilibx-linux/mlx.h"
-# include "../ft_libft/libft.h"
+# include "./ft_libft/libft.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
+# include <mlx.h>
 # include <math.h>
 # define M_PI 3.14159265358979323846
 # define M_W 1920
@@ -44,6 +46,7 @@ typedef struct s_scales
 	int		y_ms;
 	int		mouse_pressed;
 	int		projection;
+	int		rot_direction;
 }		t_scl;
 
 typedef struct s_vars
@@ -56,6 +59,16 @@ typedef struct s_vars
 	int		line_length;
 	int		endian;
 }			t_window;
+
+typedef struct s_rot
+{
+    float        x0;
+    float        y0;
+    float        z0;
+    float        x1;
+    float        y1;
+    float        z1;
+}                t_rot;
 
 typedef struct s_all
 {
@@ -70,6 +83,7 @@ void	feed_tab(char **file, int lines, t_all	*vars);
 int		ft_color(const char *s);
 void	draw_p(t_all *var, int flag);
 void	draw_shape(t_all *var, int flag);
+void    draw_rot(t_all *var, int flag);
 void	draw(t_all *var);
 void	fill_scale(t_scl *scale, float x);
 void	fill_scale2(t_scl *scale, float x, char c);

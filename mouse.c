@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/19 17:17:06 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 15:56:28 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,10 @@ int	mouse_release(int button, int x, int y, t_all *var)
 
 int	mouse_move(int x, int y, t_all *var)
 {
-	int	delta_x;
-	int	delta_y;
-
 	if (var->scale.mouse_pressed)
 	{
-		delta_x = x - var->scale.x_ms;
-		delta_y = y - var->scale.y_ms;
-		var->scale.x_offset += delta_x;
-		var->scale.y_offset += delta_y;
+		var->scale.x_offset += x - var->scale.x_ms;
+		var->scale.y_offset += y - var->scale.y_ms;
 		var->scale.x_ms = x;
 		var->scale.y_ms = y;
 		draw(var);

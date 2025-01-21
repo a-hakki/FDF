@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 20:17:24 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/01/21 21:53:16 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	draw(t_all *var)
 {
 	if (var->scale.projection == 'p')
 		draw_p(var, 1);
+	else if (var->scale.rot_direction)
+		draw_rot(var, 1);
 	if (var->scale.projection == 'i')
 		draw_shape(var, 1);
 }
