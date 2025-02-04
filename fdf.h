@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/02/04 16:49:19 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/04 17:00:18 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ typedef struct s_vars
 
 typedef struct s_rot
 {
-    float        x0;
-    float        y0;
-    float        z0;
-    float        x1;
-    float        y1;
-    float        z1;
-}                t_rot;
+	float		x0;
+	float		y0;
+	float		z0;
+	float		x1;
+	float		y1;
+	float		z1;
+}				t_rot;
 
 typedef struct s_all
 {
@@ -84,7 +84,7 @@ void	feed_tab(char **file, int lines, t_all	*vars);
 int		ft_color(const char *s);
 void	draw_p(t_all *var, int flag);
 void	draw_shape(t_all *var, int flag);
-void    draw_rot(t_all *var, int flag);
+void	draw_rot(t_all *var, int flag);
 void	draw(t_all *var);
 void	fill_scale(t_scl *scale, float x);
 void	fill_scale2(t_scl *scale, float x, char c);
