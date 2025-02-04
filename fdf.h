@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/02/04 17:00:18 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/04 17:03:03 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_all
 	t_vec		crd;
 	t_scl		scale;
 	t_window	win;
+	t_rot		rot;
 }				t_all;
 
 void	feed_tab(char **file, int lines, t_all	*vars);
