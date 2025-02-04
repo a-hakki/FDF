@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:56:37 by kali              #+#    #+#             */
-/*   Updated: 2025/01/21 21:47:47 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:48:37 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	initialisation(t_all *var, int flag)
 		var->scale.x_ms = 0;
 		var->scale.y_ms = 0;
 		var->scale.rot_direction = 0;
+		var->scale.flag = 0;
 	}
 	if (flag)
 	{

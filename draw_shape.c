@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/01/20 19:56:10 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:52:59 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	fill_scale(t_scl *scale, float x)
 {
 	scale->x = 10 * x;
-	scale->y = 12 * x;
-	scale->z = 1 * x;
+	scale->y = 10 * x;
+	scale->z = 10 * x;
 	scale->x_offset = M_W * 450 / 1000;
 	scale->y_offset = M_H * 250 / 1000;
 }
@@ -30,7 +30,7 @@ void	draw_line_segment(t_window *window, t_vec crd)
 	char	*dst;
 
 	i = 0;
-	steps = 400;
+	steps = 100;
 	while (i <= steps)
 	{
 		x = crd.x0 + (float)i / steps * (crd.x1 - crd.x0);
@@ -58,6 +58,11 @@ void	get_crd_colomns(t_all *strct, int i, int j)
 		((i + 1) * strct->scale.x + j * strct->scale.y) * \
 			sin(M_PI / 5) - (strct->crd.tab[j][i + 1] * strct->scale.z);
 	draw_line_segment(&strct->win, strct->crd);
+	if (strct->scale.flag == 0)
+	{
+		while ((strct->crd.x1 > M_W || strct->crd.y1 > M_H) && strct->scale.flag == 0)
+			keys('n', strct);
+	}
 }
 
 void	get_crd_lines(t_all *strct, int i, int j)
@@ -99,5 +104,6 @@ void	draw_shape(t_all *var, int flag)
 		}
 		j++;
 	}
+	var->scale.flag = 1;
 	hook_manipulation(var);
 }

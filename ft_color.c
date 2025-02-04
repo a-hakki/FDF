@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 16:43:44 by kali              #+#    #+#             */
-/*   Updated: 2025/01/14 22:47:16 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/04 16:44:23 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_color(const char *s)
 
 void	fill_scale2(t_scl *scale, float x, char c)
 {
-	if (c == '*')
+	if (c == '*' && scale->x > 100 && scale->y > 100)
 	{
 		scale->x *= (1 + x);
 		scale->y *= (1 + x);
