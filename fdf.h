@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/02/04 17:03:03 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/04 17:04:41 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_all
 
 void	feed_tab(char **file, int lines, t_all	*vars);
 
-// line functions
+// draw line functions 
 int		ft_color(const char *s);
 void	draw_p(t_all *var, int flag);
 void	draw_shape(t_all *var, int flag);
