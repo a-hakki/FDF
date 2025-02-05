@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bresenham.c                                        :+:      :+:    :+:   */
+/*   ~bresenham.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:32:38 by ahakki            #+#    #+#             */
-/*   Updated: 2025/02/05 21:10:24 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/05 21:07:17 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,33 @@ void	update_line_step(t_all *var, t_vec *crd)
 	}
 }
 
+unsigned int	interpolate_color(unsigned int start, unsigned int end, float t)
+{
+	t_color	color;
+
+	color.r = (start >> 16) & 0xFF;
+	color.g = (start >> 8) & 0xFF;
+	color.b = start & 0xFF;
+	color.r2 = (end >> 16) & 0xFF;
+	color.g2 = (end >> 8) & 0xFF;
+	color.b2 = end & 0xFF;
+	color.r_interp = color.r + (int)((color.r2 - color.r) * t);
+	color.g_interp = color.g + (int)((color.g2 - color.g) * t);
+	color.b_interp = color.b + (int)((color.b2 - color.b) * t);
+	return ((color.r_interp & 0xFF) << 16) | ((color.g_interp & 0xFF) << 8) | (color.b_interp & 0xFF);
+}
+
 void	draw_line_segment(t_window *window, t_vec crd, t_all *var)
 {
 	char	*dst;
+	int		total_step;
+	int		step;
 
+	step = 0;
 	while ((crd.x1 > M_W || crd.y1 > M_H) && var->scale.flag == 0)
 			keys('n', var);
 	ft_get_values(var);
+	total_step = ft_max(var->line.dx, var->line.dy);
 	while (1)
 	{
 		if (crd.x0 >= 0 && crd.x0 < window->line_length / 4 &&
@@ -64,10 +84,11 @@ void	draw_line_segment(t_window *window, t_vec crd, t_all *var)
 		{
 			dst = window->addr + (crd.y0 * window->line_length + 
 					crd.x0 * (window->bpp / 8));
-			*(unsigned int *)dst = crd.c;
+			*(unsigned int *)dst = interpolate_color(crd.c, crd.c_end, fraction(step, total_step));
 		}
 		if (crd.x0 == crd.x1 && crd.y0 == crd.y1)
 			break;
 		update_line_step(var, &crd);
+		step++;
 	}
 }

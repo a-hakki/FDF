@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/02/05 20:10:11 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/05 21:08:33 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	draw_shape(t_all *var, int flag)
 		while (i < var->crd.columns)
 		{
 			var->crd.c = var->crd.color[j][i];
-			var->crd.c_end = var->crd.color[j][i];
 			if (i + 1 < var->crd.columns)
 				get_crd_colomns(var, i, j);
 			if (j + 1 < var->crd.lines)
