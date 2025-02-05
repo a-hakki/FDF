@@ -62,7 +62,8 @@ source =  \
 		ft_file_form.c \
 		int_free.c \
 		ft_free.c \
-		ft_read.c
+		ft_read.c \
+		ft_math.c
 
 object = $(source:.c=.o)
 

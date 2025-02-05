@@ -13,7 +13,9 @@ sources = \
 		mouse.c \
 		draw.c \
 		key.c \
-		rotation.c
+		fill_scale.c \
+		rotation.c \
+		bresenham.c
 
 object = $(sources:.c=.o)
 

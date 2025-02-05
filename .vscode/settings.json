@@ -1,6 +1,9 @@
 {
     "files.associations": {
-        "format": "c"
+        "format": "c",
+        "chrono": "c",
+        "random": "c",
+        "limits": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

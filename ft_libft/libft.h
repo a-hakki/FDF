@@ -33,6 +33,10 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+// math functions
+int		ft_abs(int a);
+int	ft_max(int a, int b);
+
 // ft_is functions
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

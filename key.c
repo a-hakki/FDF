@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/01/21 22:00:48 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/05 20:20:44 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ void	keys(int k, t_all *var)
 	if (k == 'n')
 		fill_scale2(&var->scale, 0.5, '/');
 	if (k == 'b')
+	{
+		var->scale.rot_direction = 0;
+		var->scale.flag = 0;
 		fill_scale(&var->scale, 1.7);
+	}
 	if (k == 'z')
-		var->scale.z += 0.5;
+		var->scale.z += 2;
 	if (k == 'x')
-		var->scale.z -= 0.5;
+		var->scale.z -= 2;
 	if (k == 'p')
 		var->scale.projection = 'p';
 	if (k == 'i')

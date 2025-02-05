@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/02/04 16:45:56 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/05 20:22:12 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	get_crd_colomns_rot(t_all *strct, int i, int j, float theta_z)
 	rot.z1 = strct->crd.tab[j][i + 1] * strct->scale.z;
 	rotate_point_z(&rot.x0, &rot.y0, theta_z);
 	rotate_point_z(&rot.x1, &rot.y1, theta_z);
-	strct->crd.x0 = strct->scale.x_offset + rot.x0 * cos(M_PI / 5);
-	strct->crd.y0 = strct->scale.y_offset + rot.y0 * sin(M_PI / 5) - rot.z0;
-	strct->crd.x1 = strct->scale.x_offset + rot.x1 * cos(M_PI / 5);
-	strct->crd.y1 = strct->scale.y_offset + rot.y1 * sin(M_PI / 5) - rot.z1;
-	draw_line_segment(&strct->win, strct->crd);
+	strct->crd.x0 = strct->scale.x_offset + rot.x0 * cos(M_PI / 6);
+	strct->crd.y0 = strct->scale.y_offset + rot.y0 * sin(M_PI / 6) - rot.z0;
+	strct->crd.x1 = strct->scale.x_offset + rot.x1 * cos(M_PI / 6);
+	strct->crd.y1 = strct->scale.y_offset + rot.y1 * sin(M_PI / 6) - rot.z1;
+	draw_line_segment(&strct->win, strct->crd, strct);
 }
 
 void	get_crd_lines_rot(t_all *strct, int i, int j, float theta_z)
@@ -54,11 +54,11 @@ void	get_crd_lines_rot(t_all *strct, int i, int j, float theta_z)
 	rot.z1 = strct->crd.tab[j + 1][i] * strct->scale.z;
 	rotate_point_z(&rot.x0, &rot.y0, theta_z);
 	rotate_point_z(&rot.x1, &rot.y1, theta_z);
-	strct->crd.x0 = strct->scale.x_offset + rot.x0 * cos(M_PI / 5);
-	strct->crd.y0 = strct->scale.y_offset + rot.y0 * sin(M_PI / 5) - rot.z0;
-	strct->crd.x1 = strct->scale.x_offset + rot.x1 * cos(M_PI / 5);
-	strct->crd.y1 = strct->scale.y_offset + rot.y1 * sin(M_PI / 5) - rot.z1;
-	draw_line_segment(&strct->win, strct->crd);
+	strct->crd.x0 = strct->scale.x_offset + rot.x0 * cos(M_PI / 6);
+	strct->crd.y0 = strct->scale.y_offset + rot.y0 * sin(M_PI / 6) - rot.z0;
+	strct->crd.x1 = strct->scale.x_offset + rot.x1 * cos(M_PI / 6);
+	strct->crd.y1 = strct->scale.y_offset + rot.y1 * sin(M_PI / 6) - rot.z1;
+	draw_line_segment(&strct->win, strct->crd, strct);
 }
 
 void	draw_rot(t_all *var, int flag)
@@ -77,9 +77,9 @@ void	draw_rot(t_all *var, int flag)
 		{
 			var->crd.c = var->crd.color[j][i];
 			if (i + 1 < var->crd.columns)
-				get_crd_colomns_rot(var, i, j, 5 + var->scale.rot_direction);
+				get_crd_colomns_rot(var, i, j, 6 * var->scale.rot_direction);
 			if (j + 1 < var->crd.lines)
-				get_crd_lines_rot(var, i, j, 5 + var->scale.rot_direction);
+				get_crd_lines_rot(var, i, j, 6 * var->scale.rot_direction);
 			i++;
 		}
 		j++;

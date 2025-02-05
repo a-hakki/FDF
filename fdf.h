@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/02/04 17:04:41 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/05 20:25:23 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,34 @@ typedef struct s_coordinates
 	int	y1;
 	int	**color;
 	int	c;
+	int	c_end;
 	int	**tab;
 	int	lines;
 	int	columns;
-}		t_vec;
+}			t_vec;
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+	int	r2;
+	int	g2;
+	int	b2;
+	int	r_interp;
+	int	g_interp;
+	int	b_interp;
+}			t_color;
+
+typedef struct s_line
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}			t_line;
 
 typedef struct s_scales
 {
@@ -76,12 +100,12 @@ typedef struct s_all
 	t_vec		crd;
 	t_scl		scale;
 	t_window	win;
-	t_rot		rot;
+	t_line		line;
 }				t_all;
 
 void	feed_tab(char **file, int lines, t_all	*vars);
 
-// draw line functions 
+// line functions
 int		ft_color(const char *s);
 void	draw_p(t_all *var, int flag);
 void	draw_shape(t_all *var, int flag);
@@ -89,8 +113,10 @@ void	draw_rot(t_all *var, int flag);
 void	draw(t_all *var);
 void	fill_scale(t_scl *scale, float x);
 void	fill_scale2(t_scl *scale, float x, char c);
-void	draw_line_segment(t_window *window, t_vec crd);
+void	draw_line_segment(t_window *window, t_vec crd, t_all *var);
 void	fr(int **tab, int **col, char ***split);
+void	update_line_step(t_all *var, t_vec *crd);
+void	ft_get_values(t_all *var);
 
 // hook functions
 void	keys(int k, t_all *var);
