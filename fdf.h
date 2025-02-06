@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 18:15:20 by kali              #+#    #+#             */
-/*   Updated: 2025/02/05 20:25:23 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/06 09:00:19 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,14 @@
 # include <mlx.h>
 # include <math.h>
 # define M_PI 3.14159265358979323846
+
+#if !defined(M_W)
 # define M_W 1920
+#endif
+
+#if !defined(M_H)
 # define M_H 1080
+#endif
 
 typedef struct s_coordinates
 {

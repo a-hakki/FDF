@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/02/05 20:23:30 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/06 09:06:48 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	get_crd_colomns_p(t_all *strct, int i, int j)
 	strct->crd.y0 = strct->scale.y_offset + (j * strct->scale.y);
 	strct->crd.x1 = strct->scale.x_offset + ((i + 1) * strct->scale.x);
 	strct->crd.y1 = strct->scale.y_offset + (j * strct->scale.y);
+	strct->crd.c_end = strct->crd.color[j][i + 1];
 	draw_line_segment(&strct->win, strct->crd, strct);
 }
 
@@ -27,6 +28,7 @@ void	get_crd_lines_p(t_all *strct, int i, int j)
 	strct->crd.y0 = strct->scale.y_offset + (j * strct->scale.y);
 	strct->crd.x1 = strct->scale.x_offset + (i * strct->scale.x);
 	strct->crd.y1 = strct->scale.y_offset + ((j + 1) * strct->scale.y);
+	strct->crd.c_end = strct->crd.color[j + 1][i];
 	draw_line_segment(&strct->win, strct->crd, strct);
 }
 

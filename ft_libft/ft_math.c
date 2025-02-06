@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 19:53:06 by ahakki            #+#    #+#             */
-/*   Updated: 2025/02/05 19:55:41 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/05 21:19:36 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int	ft_abs(int a)
 
 int	ft_max(int a, int b)
 {
-    return ((a >= b) * a + (a < b) * b);
+	return ((a >= b) * a + (a < b) * b);
 }

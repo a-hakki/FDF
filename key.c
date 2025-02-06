@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/02/05 20:20:44 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/06 09:24:43 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	keys(int k, t_all *var)
 		fill_scale(&var->scale, 1.7);
 	}
 	if (k == 'z')
-		var->scale.z += 2;
+		var->scale.z += 0.5;
 	if (k == 'x')
-		var->scale.z -= 2;
+		var->scale.z -= 0.5;
 	if (k == 'p')
 		var->scale.projection = 'p';
 	if (k == 'i')

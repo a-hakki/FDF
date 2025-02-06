@@ -3,7 +3,8 @@
         "format": "c",
         "chrono": "c",
         "random": "c",
-        "limits": "c"
+        "limits": "c",
+        "bresenham2": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

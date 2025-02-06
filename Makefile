@@ -37,16 +37,10 @@ fclean: clean
 
 re: fclean all
 
-flush: re clean
-	make clean -C $(LIBFT_DIR)
-	rm -rf $(object)
-
 f: $(object)
 	$(CC) $(CFLAGS) $(object) ./ft_libft/libft.a -lmlx -lXext -lX11 -lm -o $(NAME)
 	make clean
-
-c: $(object)
-	$(CC) $(CFLAGS) $(object) ./ft_libft/libft.a -lmlx -lXext -lX11 -lm -o $(NAME)
+	clear
 
 .SECONDARY: $(object)
 .PHONY: clean fclean re all
