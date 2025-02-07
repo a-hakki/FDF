@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 17:45:25 by kali              #+#    #+#             */
-/*   Updated: 2025/02/06 09:15:12 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/06 14:23:21 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rotate_point_z(float *x, float *y, float theta_z)
 	float	rad_z;
 	float	temp_x;
 
-	rad_z = theta_z * (M_PI / 180.0);
+	rad_z = theta_z * (M_PI / 180.0f);
 	temp_x = *x * cos(rad_z) - *y * sin(rad_z);
 	*y = *x * sin(rad_z) + *y * cos(rad_z);
 	*x = temp_x;

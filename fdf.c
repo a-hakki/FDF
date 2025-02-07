@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/02/04 16:17:05 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:42:13 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	main(int ac, char **av)
 		if (fd == -1)
 			return (perror("Failed to open file"), 1);
 		file = ft_read(fd, av[1]);
-		if (!file)
+		if (!file || !*file || !**file || **file == '\n')
 			return (close(fd), ft_free("2", file), \
-			perror("Failed to read file"), 1);
+			write(1, "Failed to read file or No data to read\n", 39), 1);
 		while (file[i])
 			i++;
 		feed_tab(file, i, &vars);
