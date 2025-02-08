@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:32:38 by ahakki            #+#    #+#             */
-/*   Updated: 2025/02/06 10:21:44 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/08 22:28:19 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ unsigned int	interpolate_color(unsigned int start, unsigned int end, float t)
 	color.r_interp = color.r + (int)((color.r2 - color.r) * t);
 	color.g_interp = color.g + (int)((color.g2 - color.g) * t);
 	color.b_interp = color.b + (int)((color.b2 - color.b) * t);
-	return ((color.r_interp & 0xFF) << 16) | ((color.g_interp & 0xFF) << 8) | (color.b_interp & 0xFF);
+	return (((color.r_interp & 0xFF) << 16) | \
+	((color.g_interp & 0xFF) << 8) | (color.b_interp & 0xFF));
 }
 
 void	draw_line_segment(t_window *window, t_vec crd, t_all *var)
@@ -74,20 +75,21 @@ void	draw_line_segment(t_window *window, t_vec crd, t_all *var)
 
 	step = 0;
 	while ((crd.x1 > M_W || crd.y1 > M_H) && var->scale.flag == 0)
-			keys('n', var);
+		keys('n', var);
 	ft_get_values(var);
 	total_step = ft_abs(ft_max(var->line.dx, var->line.dy));
 	while (1)
 	{
-		if (crd.x0 >= 0 && crd.x0 < window->line_length / 4 &&
+		if (crd.x0 >= 0 && crd.x0 < window->line_length / 4 && \
 			crd.y0 >= 0 && crd.y0 < M_H)
 		{
-			dst = window->addr + (crd.y0 * window->line_length + 
+			dst = window->addr + (crd.y0 * window->line_length + \
 					crd.x0 * (window->bpp / 8));
-			*(unsigned int *)dst = interpolate_color(crd.c, crd.c_end, fraction(step, total_step));
+			*(unsigned int *)dst = interpolate_color(crd.c, crd.c_end, \
+			fraction(step, total_step));
 		}
 		if (crd.x0 == crd.x1 && crd.y0 == crd.y1)
-			break;
+			break ;
 		update_line_step(var, &crd);
 		step++;
 	}

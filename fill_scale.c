@@ -6,19 +6,26 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:58:29 by ahakki            #+#    #+#             */
-/*   Updated: 2025/02/05 20:24:51 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/08 22:26:04 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fill_scale(t_scl *scale, float x)
+void	fill_scale(t_all *var, float x)
 {
-	scale->x = 10 * x;
-	scale->y = 10 * x;
-	scale->z = 10 * x;
-	scale->x_offset = M_W * 450 / 1000;
-	scale->y_offset = M_H * 250 / 1000;
+	float	iso_x;
+	float	iso_y;
+
+	var->scale.x = 10 * x;
+	var->scale.y = 10 * x;
+	var->scale.z = 10 * x;
+	iso_x = ((var->crd.columns - 1) * var->scale.x - (var->crd.lines - 1) \
+	* var->scale.y) * cos(M_PI / 6);
+	iso_y = ((var->crd.columns - 1) * var->scale.x + (var->crd.lines - 1) \
+	* var->scale.y) * sin(M_PI / 6);
+	var->scale.x_offset = (M_W - iso_x) / 2;
+	var->scale.y_offset = (M_H - iso_y) / 2;
 }
 
 void	fill_scale2(t_scl *scale, float x, char c)

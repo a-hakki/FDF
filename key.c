@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/02/06 09:24:43 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/08 22:06:28 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	keys(int k, t_all *var)
 	{
 		var->scale.rot_direction = 0;
 		var->scale.flag = 0;
-		fill_scale(&var->scale, 1.7);
+		fill_scale(var, 1.7);
 	}
 	if (k == 'z')
 		var->scale.z += 0.5;
