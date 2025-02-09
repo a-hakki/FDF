@@ -6,7 +6,7 @@
 /*   By: ahakki <ahakki@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 22:45:31 by kali              #+#    #+#             */
-/*   Updated: 2025/02/08 21:55:35 by ahakki           ###   ########.fr       */
+/*   Updated: 2025/02/09 15:46:56 by ahakki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,20 @@ void	free_tab(t_all *var)
 	free(var->crd.tab);
 }
 
+int	ft_isspace(char *av)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+	{
+		if (av[i] != ' ')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	char	**file;
@@ -62,7 +76,7 @@ int	main(int ac, char **av)
 		if (fd == -1)
 			return (perror("Failed to open file"), 1);
 		file = ft_read(fd, av[1]);
-		if (!file || !*file || **file == '\0' || **file == '\n')
+		if (!file || !*file || !ft_isspace(*file) || **file == '\n')
 			return (close(fd), ft_free("2", file), \
 			write(1, "Failed to read file or No data to read\n", 39), 1);
 		while (file[i])
